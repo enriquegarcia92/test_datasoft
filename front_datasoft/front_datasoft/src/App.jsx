@@ -53,18 +53,18 @@ function App() {
           Choose a Category:
         </label>
         <select
-          className="form-select"
-          id="categorySelect"
-          value={selectedCategory}
-          onChange={handleCategoryChange}
-        >
-        <option value="0" selected></option>
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category === 'All' ? 'All Products' : category}
-            </option>
-          ))}
-        </select>
+  className="form-select"
+  id="categorySelect"
+  value={selectedCategory}
+  onChange={handleCategoryChange}
+>
+  <option value="All">All Products</option>
+  {categories.map((category) => (
+    <option key={category} value={category}>
+      {category === 'All' ? 'All Products' : category}
+    </option>
+  ))}
+</select>
       </div>
 
       {/* Product Cards */}
@@ -99,28 +99,33 @@ function App() {
       </div>
 
       {/* Product Detail Modal */}
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>{selectedProduct && selectedProduct.prd_nombre}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      {/* Product Detail Modal */}
+<Modal show={showModal} onHide={handleCloseModal}>
+  <Modal.Header closeButton>
+    <Modal.Title>{selectedProduct && selectedProduct.prd_nombre}</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    {selectedProduct && (
+      <>
         <img
-                  src={`data:image/png;base64,${selectedProduct.prd_imagen}`}
-                  className="card-img-top img-thumbnail"
-                  alt={data.prd_name}
-                />
-          <p>Id: {selectedProduct && selectedProduct.prd_id}</p>
-          <p>Price: ${selectedProduct && selectedProduct.prd_price}</p>
-          <p>Description: {selectedProduct && selectedProduct.prd_descripcion}</p>
-          <p>State: {selectedProduct && selectedProduct.prd_estado}</p>
-          {/* Add other product details here */}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          src={`data:image/png;base64,${selectedProduct.prd_imagen}`}
+          className="card-img-top img-thumbnail"
+          alt={selectedProduct.prd_name}
+        />
+        <p>Id: {selectedProduct.prd_id}</p>
+        <p>Price: ${selectedProduct.prd_precio}</p>
+        <p>Description: {selectedProduct.prd_descripcion}</p>
+        <p>State: {selectedProduct.prd_estado}</p>
+        {/* Add other product details here */}
+      </>
+    )}
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleCloseModal}>
+      Close
+    </Button>
+  </Modal.Footer>
+</Modal>
     </div>
   );
 }
