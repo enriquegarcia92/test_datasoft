@@ -18,13 +18,27 @@ public class productosService {
     }
     public List<productos> getAllProducts() {
         List<productos> productList = productRepository.findAll();
+        productList.forEach(product -> {
+            byte[] decodedImage = Base64.getDecoder().decode(product.getPrd_imagen());
+            product.setPrd_imagen(decodedImage);
+        });
         return productList;
     }
     public List<productos> getByCategory(Integer id) {
         List<productos> productList = productRepository.getByCategory(id);
+        productList.forEach(product -> {
+            byte[] decodedImage = Base64.getDecoder().decode(product.getPrd_imagen());
+            product.setPrd_imagen(decodedImage);
+        });
         return productList;
     }
     public Optional<productos> getProductDetail(Integer id) {
-        return productRepository.findById(id);
-    }
+        Optional<productos> optionalProduct = productRepository.findById(id);
+
+        optionalProduct.ifPresent(product -> {
+            byte[] decodedImage = Base64.getDecoder().decode(product.getPrd_imagen());
+            product.setPrd_imagen(decodedImage);
+        });
+
+        return optionalProduct;    }
 }

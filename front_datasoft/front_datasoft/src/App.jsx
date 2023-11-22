@@ -50,7 +50,7 @@ function App() {
       {/* Category Dropdown */}
       <div className="mb-3">
         <label htmlFor="categorySelect" className="form-label">
-          Choose a Category:
+        Choose a Category:
         </label>
         <select
   className="form-select"
@@ -58,7 +58,6 @@ function App() {
   value={selectedCategory}
   onChange={handleCategoryChange}
 >
-  <option value="All">All Products</option>
   {categories.map((category) => (
     <option key={category} value={category}>
       {category === 'All' ? 'All Products' : category}
@@ -98,7 +97,6 @@ function App() {
           ))}
       </div>
 
-      {/* Product Detail Modal */}
       {/* Product Detail Modal */}
 <Modal show={showModal} onHide={handleCloseModal}>
   <Modal.Header closeButton>

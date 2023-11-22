@@ -88,4 +88,16 @@ public class productos {
     public void setPrd_estado(String prd_estado) {
         this.prd_estado = prd_estado;
     }
+
+    public String getPrd_estado() {
+        return prd_estado;
+    }
+
+    public categorias getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(categorias categoria) {
+        this.categoria = categoria;
+    }
 }
